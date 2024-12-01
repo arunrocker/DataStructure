@@ -11,23 +11,17 @@ public class BinarySearchTree {
             insert(root,data);
         }
     }
-    private void insert(Node node,int data){
+    private Node insert(Node node,int data){
+        if(node == null){
+            return new Node(data);
+        }
             if(data < node.data){
-                if(node.left ==null){
-                    node.left = new Node(data);
-                }
-                else {
-                    insert(node.left, data);
-                }
+               node.left = insert(node.left,data);
             }
             else{
-                if(node.right ==null){
-                    node.right = new Node(data);
-                }
-                else {
-                    insert(node.right, data);
-                }
+                node.right = insert(node.right,data);
             }
+            return node;
     }
     public void prettyPrintTree(Node node, int lvl){
         if(node == null){
